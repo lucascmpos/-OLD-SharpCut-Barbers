@@ -8,14 +8,9 @@ const Header = () => {
     <Card>
       <CardContent className="p-5 justify-between flex flex-row">
         <div className="flex flex-row">
-          <Image
-            src="/scissorlogo.png"
-            alt="LC Barbers"
-            height={0}
-            width={50}
-          />
+          <Image src="/scissor.png" alt="LC Barbers" height={22} width={38} />
           <h1 className="font-bold text-4xl flex">
-            <p className="font-extrabold text-[#8162FF] mr-2">LC </p>BARBERS
+            <p className="font-extrabold text-red-800 mr-2">LC </p>BARBERS
           </h1>
         </div>
         <Button variant="outline" size="icon">
