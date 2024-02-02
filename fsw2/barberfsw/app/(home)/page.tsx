@@ -5,6 +5,7 @@ import Search from "./_components/search";
 import BookingItem from "../_components/booking-item";
 import { db } from "../_lib/prisma";
 import BarbershopItem from "./_components/barbershop-item";
+import { useSession } from "next-auth/react";
 
 export default async function Home() {
   const barbershops = await db.barbershop.findMany({});
@@ -14,7 +15,7 @@ export default async function Home() {
       <Header />
 
       <div className="px-5 pt-5">
-        <h2 className="text-xl font-bold">Olá, Miguel!</h2>
+        <h2 className="text-xl font-bold">Olá, usuário!</h2>
         <p className="capitalize text-sm">
           {format(new Date(), "EEEE',' dd 'de' MMMM", {
             locale: ptBR,
@@ -30,7 +31,7 @@ export default async function Home() {
         <h2 className="text-xs mb-3 uppercase text-gray-400 font-bold">
           Agendamentos
         </h2>
-        <BookingItem />
+        {/* <BookingItem /> */}
       </div>
 
       <div className="mt-6">
