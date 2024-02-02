@@ -11,17 +11,20 @@ import {
   SheetTrigger,
 } from "./ui/sheet";
 import SideMenu from "./side-menu";
+import Link from "next/link";
 
 const Header = () => {
   return (
     <Card>
       <CardContent className="p-5 justify-between flex flex-row">
-        <div className="flex flex-row">
-          <Image src="/scissor.png" alt="LC Barbers" height={22} width={38} />
-          <h1 className="font-bold text-4xl flex uppercase">
-            <p className="font-extrabold text-red-800 mr-2">LC </p>Barbers
-          </h1>
-        </div>
+        <Link href="/">
+          <div className="flex flex-row">
+            <Image src="/scissor.png" alt="LC Barbers" height={22} width={38} />
+            <h1 className="font-bold text-4xl flex uppercase">
+              <p className="font-extrabold text-red-800 mr-2">LC </p>Barbers
+            </h1>
+          </div>
+        </Link>
         <Sheet>
           <SheetTrigger asChild>
             <Button variant="outline" size="icon">

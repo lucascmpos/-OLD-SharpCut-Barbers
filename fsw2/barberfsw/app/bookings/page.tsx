@@ -13,20 +13,32 @@ const BookingsPage = async () => {
     return redirect("/");
   }
 
-  const bookings = await db.booking.findMany({
-    where: {
-      userId: (session.user as any).id,
-    },
-    include: {
-      service: true,
-      barbershop: true,
-    },
-  });
-
-  const confirmedBookings = bookings.filter((booking) =>
-    isFuture(booking.date)
-  );
-  const finishedBookings = bookings.filter((booking) => isPast(booking.date));
+  const [confirmedBookings, finishedBookings] = await Promise.all([
+    await db.booking.findMany({
+      where: {
+        userId: (session.user as any).id,
+        date: {
+          gte: new Date(),
+        },
+      },
+      include: {
+        service: true,
+        barbershop: true,
+      },
+    }),
+    await db.booking.findMany({
+      where: {
+        userId: (session.user as any).id,
+        date: {
+          lt: new Date(),
+        },
+      },
+      include: {
+        service: true,
+        barbershop: true,
+      },
+    }),
+  ]);
 
   return (
     <>
@@ -34,7 +46,7 @@ const BookingsPage = async () => {
       <div className="px-5 py-6">
         <h1 className="text-xl font-bold">Agendamentos</h1>
 
-        <h2 className="text-gray-400 uppercase font-bold text-sm">
+        <h2 className="text-gray-400 uppercase font-bold text-sm py-2">
           Confirmados
         </h2>
 
