@@ -4,7 +4,6 @@ import { authOptions } from "../api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
 import { db } from "../_lib/prisma";
 import BookingItem from "../_components/booking-item";
-import { isFuture, isPast } from "date-fns";
 
 const BookingsPage = async () => {
   const session = await getServerSession(authOptions);
@@ -41,7 +40,7 @@ const BookingsPage = async () => {
   ]);
 
   return (
-    <>
+    <div>
       <Header />
       <div className="px-5 py-6">
         <h1 className="text-xl font-bold">Agendamentos</h1>
@@ -66,7 +65,7 @@ const BookingsPage = async () => {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
